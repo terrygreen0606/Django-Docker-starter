@@ -1,0 +1,15 @@
+# One reason to use volumes is to avoid reloading or rebuilding docker images by saving changes in a certain volume
+version: '3'
+
+services:
+    app:
+        build: ./
+        ports:
+            - '8000:8000'
+        volumes:
+            - ./app:/app
+        command: >
+            sh -c "python manage.py runserver 0.0.0.0:8000"
+
+# Run this command
+# docker-compose run app (service name in Dockerfile) sh -c "django-admin.py startproject django_auth ."
